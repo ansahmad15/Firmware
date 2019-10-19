@@ -296,7 +296,7 @@ ADC::update_system_power(hrt_abstime now)
 #endif
 
 	/* The valid signals (HW dependent) are associated with each brick */
-#if !defined(BOARD_NUMBER_DIGITAL_BRICKS)
+#if defined(BOARD_NUMBER_BRICKS) && defined(BOARD_BRICK_VALID_LIST)
 	bool  valid_chan[BOARD_NUMBER_BRICKS] = BOARD_BRICK_VALID_LIST;
 	system_power.brick_valid = 0;
 

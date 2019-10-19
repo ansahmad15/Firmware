@@ -70,10 +70,7 @@
 
 /* Configuration ************************************************************************************/
 
-#define BOARD_HAS_LTC44XX_VALIDS      2 //  N Bricks
 #define BOARD_HAS_USB_VALID           1 // LTC Has USB valid
-#define BOARD_HAS_NBAT_V              2d // 2 Digital Voltage
-#define BOARD_HAS_NBAT_I              2d // 2 Digital Current
 
 /* PX4FMU GPIOs ***********************************************************************************/
 
@@ -456,8 +453,6 @@
 
 #define GPIO_nVDD_BRICK1_VALID          GPIO_nPOWER_IN_A /* Brick 1 Is Chosen */
 #define GPIO_nVDD_BRICK2_VALID          GPIO_nPOWER_IN_B /* Brick 2 Is Chosen  */
-#define BOARD_NUMBER_BRICKS             2
-#define BOARD_NUMBER_DIGITAL_BRICKS     2
 #define GPIO_nVDD_USB_VALID             GPIO_nPOWER_IN_C /* USB     Is Chosen */
 
 #define GPIO_VDD_5V_PERIPH_nEN          /* PG4  */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTG|GPIO_PIN4)
@@ -591,28 +586,6 @@
 /* FMUv5X never powers off the Servo rail */
 
 #define BOARD_ADC_SERVO_VALID     (1)
-
-#if !defined(BOARD_HAS_LTC44XX_VALIDS) || BOARD_HAS_LTC44XX_VALIDS == 0
-#  define BOARD_ADC_BRICK1_VALID  (1)
-#  define BOARD_ADC_BRICK2_VALID  (0)
-#elif BOARD_HAS_LTC44XX_VALIDS == 1
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (0)
-#elif BOARD_HAS_LTC44XX_VALIDS == 2
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#elif BOARD_HAS_LTC44XX_VALIDS == 3
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#  define BOARD_ADC_BRICK3_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK3_VALID))
-#elif BOARD_HAS_LTC44XX_VALIDS == 4
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#  define BOARD_ADC_BRICK3_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK3_VALID))
-#  define BOARD_ADC_BRICK4_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK4_VALID))
-#else
-#  error Unsupported BOARD_HAS_LTC44XX_VALIDS value
-#endif
 
 #define BOARD_ADC_PERIPH_5V_OC  (!px4_arch_gpioread(GPIO_VDD_5V_PERIPH_nOC))
 #define BOARD_ADC_HIPOWER_5V_OC (!px4_arch_gpioread(GPIO_VDD_5V_HIPOWER_nOC))

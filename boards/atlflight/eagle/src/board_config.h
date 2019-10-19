@@ -45,8 +45,6 @@
 #define BOARD_HAS_NO_RESET
 #define BOARD_HAS_NO_BOOTLOADER
 
-#define BOARD_NUMBER_BRICKS     0
-
 /*
  * I2C busses
  */

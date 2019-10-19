@@ -329,10 +329,6 @@
 #define GPIO_GPIO1_OUTPUT        /* PA10  T1C3   FMU2 */ _MK_GPIO_OUTPUT(GPIO_TIM1_CH3OUT)
 #define GPIO_GPIO0_OUTPUT        /* PE14  T1C4   FMU1 */ _MK_GPIO_OUTPUT(GPIO_TIM1_CH4OUT)
 
-/* Power supply control and monitoring GPIOs */
-
-#define BOARD_NUMBER_BRICKS             0
-#define BOARD_NUMBER_DIGITAL_BRICKS     0
 
 #define GPIO_CAN1_SILENT                /* PI11 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTI|GPIO_PIN11)
 
@@ -417,28 +413,6 @@
 /* ModalAI FC-v1 never powers off the Servo rail */
 
 #define BOARD_ADC_SERVO_VALID     (1)
-
-#if !defined(BOARD_HAS_LTC44XX_VALIDS) || BOARD_HAS_LTC44XX_VALIDS == 0
-#  define BOARD_ADC_BRICK1_VALID  (1)
-#  define BOARD_ADC_BRICK2_VALID  (0)
-#elif BOARD_HAS_LTC44XX_VALIDS == 1
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (0)
-#elif BOARD_HAS_LTC44XX_VALIDS == 2
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#elif BOARD_HAS_LTC44XX_VALIDS == 3
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#  define BOARD_ADC_BRICK3_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK3_VALID))
-#elif BOARD_HAS_LTC44XX_VALIDS == 4
-#  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
-#  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#  define BOARD_ADC_BRICK3_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK3_VALID))
-#  define BOARD_ADC_BRICK4_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK4_VALID))
-#else
-#  error Unsupported BOARD_HAS_LTC44XX_VALIDS value
-#endif
 
 #define BOARD_HAS_PWM  DIRECT_PWM_OUTPUT_CHANNELS
 

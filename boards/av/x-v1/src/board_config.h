@@ -51,9 +51,6 @@
 
 /* Configuration ************************************************************************************/
 
-#define BOARD_HAS_NBAT_V              1 // Only one Vbat to ADC
-#define BOARD_HAS_NBAT_I              0 // No Ibat ADC
-
 #define PX4_SPI_BUS_SENSOR1  1
 #define PX4_SPI_BUS_EXTERNAL1 2
 #define PX4_SPI_BUS_SENSOR4  4
